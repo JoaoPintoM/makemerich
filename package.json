@@ -1,0 +1,28 @@
+{
+  "name": "errorscleaner",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "./node_modules/mocha/bin/mocha --compilers js:babel-core/register",
+    "dev": "backpack"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "backpack-core": "^0.0.9"
+  },
+  "devDependencies": {
+    "babel-eslint": "^7.1.1",
+    "babel-core": "^6.23.1",
+    "babel-plugin-transform-async-to-generator": "^6.22.0",
+    "babel-preset-node6": "^11.0.0",
+    "babel-preset-stage-3": "^6.22.0",
+    "babel-register": "^6.23.0",
+    "eslint": "^3.15.0",
+    "eslint-config-standard": "^6.2.1",
+    "eslint-plugin-promise": "^3.4.1",
+    "eslint-plugin-standard": "^2.0.1",
+    "mocha": "^3.2.0"
+  }
+}
