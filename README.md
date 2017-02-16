@@ -17,10 +17,10 @@ if you don't have yarn: [install yarn](https://yarnpkg.com/en/docs/install)
 ## How to run
 run app for dev
 ```bash
-npm run dev
+yarn dev
 ```
 
 run tests:
 ```bash
-npm run test
+yarn test
 ```
