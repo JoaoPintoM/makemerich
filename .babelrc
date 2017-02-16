@@ -1,4 +1,4 @@
 {
-  "presets": ["node6", "stage-3"],
+  "presets": ["latest"],
   "plugins": ["transform-async-to-generator"]
 }
