@@ -1,0 +1,16 @@
+export const mockUrls = [
+  '/59Mte1yX',
+  '/bYHrwZsm',
+  '/evsYEesf',
+  '/7wum426H',
+  '/yKuT3Qra',
+  '/cNVnwjYL',
+  '/Gh2vsxm2',
+  '/yiTbCe6G',
+  '/pQrmFUU7',
+  '/ixv435Z9',
+  '/q4gSpXRv',
+  '/B7NC6jRM',
+  '/8ZHNP6dQ',
+  '/xW9iQVca',
+  '/9Wf1Y75x' ]
