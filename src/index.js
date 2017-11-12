@@ -1,12 +1,13 @@
 const cheerio = require('cheerio')
-import { getArchives } from './requests/index'
-import { mockUrls } from './helpers/mockUrls'
+import {from} from 'rxjs/observable/from'
+import {interval} from 'rxjs/observable/interval'
+import {zip} from 'rxjs/observable/zip'
+import {switchMap, switchMapTo, tap} from 'rxjs/operators'
+import {BehaviorSubject} from 'rxjs/Rx';
+import {mockUrls} from './helpers/mockUrls';
 
-import { interval } from 'rxjs/observable/interval'
-import { from } from 'rxjs/observable/from'
-import { combineLatest } from 'rxjs/observable/combineLatest'
-import { zip } from 'rxjs/observable/zip'
-import { map, take, toArray, tap, switchMap } from 'rxjs/operators'
+
+const launcher = new BehaviorSubject();
 
 const getArchivesUrls = async () => {
   // const archivesHTML = await getArchives()
@@ -18,19 +19,39 @@ const getArchivesUrls = async () => {
   // return urls.filter(x => x.indexOf('archive') === -1)
 
   return Promise.resolve(mockUrls)
-}
+};
 
 const getPage = async ([token]) => {
   return Promise.resolve('ok')
-}
+};
 
-getArchivesUrls()
-  .then((r) => {
-    zip(from(r), interval(100))
-    .pipe(
-      switchMap(getPage),
+const getArchive = (archivesUrl) => zip(from(archivesUrl), interval(100))
+  .pipe(
+    switchMap(getPage),
+  );
+
+const getArchivesUrls$ = from(getArchivesUrls())
+  .pipe(
+    switchMap(getArchive),
+    tap((next) => {
+      }, (err) => {
+      },
+      () => launcher.next('Next round')
     )
-    .subscribe(value => {
+  );
+
+
+launcher
+  .asObservable()
+  .pipe(
+    switchMapTo(getArchivesUrls$)
+  )
+  .subscribe(
+    value => {
       console.log(value)
-    }, () => {}, () => console.log('completed'))
-}).catch(e => console.log(e))
+    },
+    (err) => {
+    },
+    () => {
+    }
+  );
